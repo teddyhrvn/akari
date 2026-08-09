@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
+import { mapAniListMedia } from "@/lib/api/anilist-mapper";
 
 const ANILIST_API_URL = "https://graphql.anilist.co";
 
 const SEARCH_QUERY = `
   query SearchMedia($search: String!, $type: MediaType) {
     Page(page: 1, perPage: 12) {
-      media(search: $search, type: $type, sort: POPULARITY_DESC) {
+      media(
+        search: $search
+        type: $type
+        sort: POPULARITY_DESC
+      ) {
         id
         type
         format
@@ -62,7 +67,9 @@ export async function GET(request: NextRequest) {
   }
 
   const mediaType =
-    type === "ANIME" || type === "MANGA" ? type : undefined;
+    type === "ANIME" || type === "MANGA"
+      ? type
+      : undefined;
 
   try {
     const response = await fetch(ANILIST_API_URL, {
@@ -99,9 +106,11 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      results: data.data.Page.media,
-    });
+    const results = data.data.Page.media.map(
+      mapAniListMedia,
+    );
+
+    return NextResponse.json({ results });
   } catch {
     return NextResponse.json(
       { error: "Une erreur inattendue est survenue." },

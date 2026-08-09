@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Media } from "@/types/anime";
 
 interface SearchResultsProps {
@@ -37,17 +38,18 @@ export function SearchResults({
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {results.map((media) => (
-        <article
+        <Link
           key={media.id}
-          className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)]"
+          href={`/media/${media.id}`}
+          className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)] transition-transform hover:-translate-y-1"
         >
           <div className="aspect-[2/3] overflow-hidden bg-[var(--surface-hover)]">
-            {media.coverImage?.large && (
-            <img
-              src={media.coverImage.large}
-              alt={getTitle(media)}
-              className="h-full w-full object-cover"
-            />
+            {media.cover.large && (
+              <img
+                src={media.cover.large}
+                alt={getTitle(media)}
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
             )}
           </div>
 
@@ -57,7 +59,11 @@ export function SearchResults({
             </h3>
 
             <div className="mt-2 flex items-center justify-between text-xs text-[var(--muted)]">
-              <span>{media.type}</span>
+              <span>
+                {media.type === "ANIME"
+                  ? "Anime"
+                  : "Manga"}
+              </span>
 
               {media.averageScore && (
                 <span>
@@ -67,7 +73,7 @@ export function SearchResults({
               )}
             </div>
           </div>
-        </article>
+        </Link>
       ))}
     </div>
   );
