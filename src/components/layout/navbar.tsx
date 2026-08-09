@@ -11,7 +11,7 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-8 text-sm text-[var(--muted)] md:flex">
           <a
-            href="#discover"
+            href="/search"
             className="transition-colors hover:text-white"
           >
             Découvrir

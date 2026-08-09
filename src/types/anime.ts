@@ -41,7 +41,6 @@ export interface Media {
   cover: MediaCover;
 
   description: string | null;
-
   genres: string[];
 
   averageScore: number | null;
