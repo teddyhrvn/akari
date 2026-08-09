@@ -1,7 +1,19 @@
+import { DiscoverSection } from "@/components/discover-section";
+import { HomeHero } from "@/components/home-hero";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold">Akari est en ligne ! 🚀</h1>
-    </main>
+    <div className="min-h-screen bg-[var(--background)]">
+      <Navbar />
+
+      <main>
+        <HomeHero />
+        <DiscoverSection />
+      </main>
+
+      <Footer />
+    </div>
   );
 }
