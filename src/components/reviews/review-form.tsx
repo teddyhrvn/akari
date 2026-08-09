@@ -67,7 +67,7 @@ export function ReviewForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          mediaId,
+          mediaRef: mediaId, // <-- Modifié ici selon ton cours
           rating,
           content,
         }),

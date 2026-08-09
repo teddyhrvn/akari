@@ -45,10 +45,11 @@ export async function GET(
     .from("media_entries")
     .select("*")
     .eq("user_id", user.id)
-    .eq("media_id", mediaId)
+    .eq("media_id", mediaId) // Corrigé en media_id
     .maybeSingle();
 
   if (error) {
+    console.error("Erreur GET media-status:", error.message);
     return NextResponse.json(
       {
         error:
@@ -106,18 +107,19 @@ export async function POST(
     .upsert(
       {
         user_id: user.id,
-        media_id: mediaId,
+        media_id: mediaId, // Corrigé en media_id
         status,
         updated_at: new Date().toISOString(),
       },
       {
-        onConflict: "user_id,media_id",
+        onConflict: "user_id,media_id", // Corrigé en user_id,media_id
       },
     )
     .select()
     .single();
 
   if (error) {
+    console.error("Erreur POST media-status:", error.message);
     return NextResponse.json(
       {
         error:
@@ -165,9 +167,10 @@ export async function DELETE(
     .from("media_entries")
     .delete()
     .eq("user_id", user.id)
-    .eq("media_id", mediaId);
+    .eq("media_id", mediaId); // Corrigé en media_id
 
   if (error) {
+    console.error("Erreur DELETE media-status:", error.message);
     return NextResponse.json(
       {
         error:
