@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Media } from "@/types/anime";
+import { ReviewForm } from "@/components/reviews/review-form";
 
 interface MediaPageProps {
   params: Promise<{
@@ -219,9 +220,7 @@ export default async function MediaPage({
             )}
 
             <div className="mt-10">
-              <button className="rounded-xl bg-[var(--accent)] px-6 py-3 font-medium text-white transition-colors hover:bg-[var(--accent-hover)]">
-                Noter cette œuvre
-              </button>
+              <ReviewForm mediaId={media.id} />
             </div>
           </div>
         </div>
