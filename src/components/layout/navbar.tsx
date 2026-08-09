@@ -27,10 +27,10 @@ export function Navbar() {
           </Link>
 
           <Link
-            href="/"
+            href="/library"
             className="transition-colors hover:text-white"
           >
-            Listes
+            Ma bibliothèque
           </Link>
         </nav>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Media } from "@/types/anime";
 import { ReviewForm } from "@/components/reviews/review-form";
 import { PublicReviews } from "@/components/reviews/public-reviews";
+import { MediaStatusSelector } from "@/components/media/media-status-selector";
 
 interface MediaPageProps {
   params: Promise<{
@@ -221,6 +222,7 @@ export default async function MediaPage({
             )}
 
             <div className="mt-10">
+              <MediaStatusSelector mediaId={media.id} />
               <ReviewForm mediaId={media.id} />
               <PublicReviews mediaId={media.id} />
             </div>
