@@ -20,7 +20,7 @@ export function Navbar() {
           </Link>
 
           <Link
-            href="/"
+            href="/activity"
             className="transition-colors hover:text-white"
           >
             Activité

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FollowButton } from "@/components/social/follow-button";
 
 interface UserPageProps {
   params: Promise<{
@@ -104,6 +105,10 @@ export default async function UserPage({
               <p className="mt-1 text-[var(--muted)]">
                 @{profile.username}
               </p>
+
+                <div className="mt-5">
+                  <FollowButton userId={profile.id} />
+                </div>
 
               {profile.bio && (
                 <p className="mt-4 max-w-2xl leading-7 text-[var(--muted)]">
